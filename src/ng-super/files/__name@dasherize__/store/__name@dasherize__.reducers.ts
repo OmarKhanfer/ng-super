@@ -1,0 +1,75 @@
+import { initial<%=classify(name)%>State, <%=classify(name)%>State } from './<%=name%>.state';
+import { <%=classify(name)%>sActions,<%=classify(name)%>sActionTypes } from './<%=name%>.actions';
+
+
+export function <%=classify(name)%>Reducers(
+  state = initial<%=classify(name)%>State,
+  action:<%=classify(name)%>sActions
+):<%=classify(name)%>State {
+  switch (action.type) {
+
+    //#region <%=classify(name)%> List Case
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_REQUEST: {
+      return { ...state };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_SUCCESS: {
+      return { ...state, <%=camelize(name)%>sList: action.response,errors:null };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_FAILED: {
+      return { ...state, errors: action.error };
+    }
+    //#endregion
+
+    //#region <%=classify(name)%> Details Case
+     case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_REQUEST: {
+      return { ...state };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_SUCCESS: {
+      return { ...state, <%=camelize(name)%>Details: action.response,errors:null };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_FAILED: {
+      return { ...state, errors: action.error };
+    }
+    //#endregion
+
+    //#region <%=classify(name)%> Create Case
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_REQUEST: {
+      return { ...state };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_SUCCESS: {
+      return { ...state,errors:null };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_FAILED: {
+      return { ...state, errors: action.error };
+    }
+    //#endregion
+
+    //#region <%=classify(name)%> Update Case
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_REQUEST: {
+      return { ...state };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_SUCCESS: {
+      return { ...state,errors:null };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_FAILED: {
+      return { ...state, error: action.error };
+    }
+    //#endregion
+
+
+    //#region <%=classify(name)%> Delete Case
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_REQUEST: {
+      return { ...state };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_SUCCESS: {
+      return { ...state,errors:null };
+    }
+    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_FAILED: {
+      return { ...state, error: action.error };
+    }
+    //#endregion
+
+    default:
+      return { ...state, };
+  }
+}

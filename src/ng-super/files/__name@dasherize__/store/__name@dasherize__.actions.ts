@@ -1,0 +1,155 @@
+import { Action } from '@ngrx/store';
+
+export enum <%=classify(name)%>sActionTypes {
+  //#region <%=underscore(name)%> List Section
+  <%=underscore(name).toUpperCase() %>S_LIST_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %>s List",
+  <%=underscore(name).toUpperCase() %>S_LIST_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %>s List",
+  <%=underscore(name).toUpperCase() %>S_LIST_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %>s List",
+  //#endregion
+
+  //#region <%=underscore(name)%> Details Section
+  <%=underscore(name).toUpperCase() %>_DETAILS_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> Details",
+  <%=underscore(name).toUpperCase() %>_DETAILS_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> Details",
+  <%=underscore(name).toUpperCase() %>_DETAILS_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> Details",
+  //#endregion
+
+  //#region <%=underscore(name)%> Delete Section
+  <%=underscore(name).toUpperCase() %>_DELETE_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Delete",
+  <%=underscore(name).toUpperCase() %>_DELETE_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Delete",
+  <%=underscore(name).toUpperCase() %>_DELETE_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Delete",
+  //#endregion
+
+  //#region <%=underscore(name)%> Create Section
+  <%=underscore(name).toUpperCase() %>_CREATE_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Save",
+  <%=underscore(name).toUpperCase() %>_CREATE_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Save",
+  <%=underscore(name).toUpperCase() %>_CREATE_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Save",
+  //#endregion
+
+  //#region <%=underscore(name)%> Update Section
+  <%=underscore(name).toUpperCase() %>_UPDATE_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Update",
+  <%=underscore(name).toUpperCase() %>_UPDATE_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Update",
+  <%=underscore(name).toUpperCase() %>_UPDATE_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Update",
+  //#endregion
+}
+
+//#region <%=underscore(name) %> List Implementation
+export class <%=classify(name)%>sListRequest implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_REQUEST;
+
+  constructor(public payload:any) {}
+
+}
+
+export class <%=classify(name)%>sListSuccess implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_SUCCESS;
+
+  constructor(public response:any) {}
+
+}
+
+export class <%=classify(name)%>sListFailed implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_FAILED;
+
+  constructor(public error:any) {}
+
+}
+//#endregion
+
+//#region <%=underscore(name) %> Details Implementation
+export class <%=classify(name)%>DetailsRequest implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_REQUEST;
+
+  constructor(public id :any) {}
+
+}
+
+export class <%=classify(name)%>DetailsSuccess implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_SUCCESS;
+
+  constructor(public response :any) {}
+
+}
+
+export class <%=classify(name)%>DetailsFailed implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_FAILED;
+
+  constructor(public error :any) {}
+
+}
+//#endregion
+
+//#region Delete <%=underscore(name) %> Implementation
+export class <%=classify(name)%>DeleteRequest implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_REQUEST;
+
+  constructor(public payload :any) {}
+
+}
+
+export class <%=classify(name)%>DeleteSuccess implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_SUCCESS;
+
+  constructor(public response :any) {}
+
+}
+
+export class <%=classify(name)%>DeleteFailed implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_FAILED;
+
+  constructor(public error :any) {}
+
+}
+//#endregion
+
+//#region Create <%=underscore(name) %> Implementation
+export class <%=classify(name)%>CreateRequest implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_REQUEST;
+
+  constructor(public payload :any) {}
+
+}
+
+export class <%=classify(name)%>CreateSuccess implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_SUCCESS;
+
+  constructor(public response :any) {}
+
+}
+
+export class <%=classify(name)%>CreateFailed implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_FAILED;
+
+  constructor(public error :any) {}
+
+}
+//#endregion
+
+//#region Update <%=underscore(name) %> Implementation
+export class <%=classify(name)%>UpdateRequest implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_REQUEST;
+
+  constructor(public payload :any) {}
+
+}
+
+export class <%=classify(name)%>UpdateSuccess implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_SUCCESS;
+
+  constructor(public response :any) {}
+
+}
+
+export class <%=classify(name)%>UpdateFailed implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_FAILED;
+
+  constructor(public error :any) {}
+
+}
+//#endregion
+
+export type <%=classify(name)%>sActions =
+| <%=classify(name)%>sListRequest | <%=classify(name)%>sListSuccess | <%=classify(name)%>sListFailed
+| <%=classify(name)%>DetailsRequest | <%=classify(name)%>DetailsSuccess | <%=classify(name)%>DetailsFailed
+| <%=classify(name)%>DeleteRequest | <%=classify(name)%>DeleteSuccess | <%=classify(name)%>DeleteFailed
+| <%=classify(name)%>CreateRequest | <%=classify(name)%>CreateSuccess | <%=classify(name)%>CreateFailed
+| <%=classify(name)%>UpdateRequest | <%=classify(name)%>UpdateSuccess | <%=classify(name)%>UpdateFailed;

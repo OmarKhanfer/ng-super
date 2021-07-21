@@ -1,0 +1,11 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-super": {
+      "description": "A blank schematic.",
+      "factory": "./ng-super/index#ngSuper",
+      "schema": "./ng-super/schema.json",
+      "aliases": ["sp"]
+    }
+  }
+}

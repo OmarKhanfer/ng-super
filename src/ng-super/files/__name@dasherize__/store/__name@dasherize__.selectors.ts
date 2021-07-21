@@ -1,0 +1,26 @@
+import { createSelector } from '@ngrx/store';
+import { <%=classify(name)%>State } from './<%=name%>.state';
+
+const <%=camelize(name)%>State = (state: any) => {
+  return state.<%=camelize(classify(name))%>;
+};
+
+// selector for all <%=classify(name).toLowerCase()%>s
+export const select<%=classify(name)%>sList = createSelector(
+  <%=camelize(name)%>State,
+  (state: <%=classify(name)%>State) => (state && state.<%=camelize(name)%>sList ? state.<%=camelize(name)%>sList : null)
+);
+
+
+// selector for details of <%=classify(name).toLowerCase()%>
+export const select<%=classify(name)%>Details = createSelector(
+  <%=camelize(classify(name))%>State,
+  (state: <%=classify(name)%>State) => (state && state.<%=camelize(name)%>Details ? state.<%=camelize(name)%>Details : null)
+);
+
+
+// selector erros of <%=classify(name).toLowerCase()%> state
+export const select<%=classify(name)%>Errors = createSelector(
+  <%=camelize(classify(name))%>State,
+  (state: <%=classify(name)%>State) => (state && state.errors ? state.errors : null)
+);
