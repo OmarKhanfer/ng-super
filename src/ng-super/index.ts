@@ -1,5 +1,6 @@
-import { strings } from '@angular-devkit/core';
-import { apply, mergeWith, move, Rule, SchematicContext, SchematicsException, template, Tree, url } from '@angular-devkit/schematics';
+import { normalize, strings } from '@angular-devkit/core';
+import { apply, applyTemplates, chain, mergeWith, move, Rule, SchematicContext, SchematicsException, template, Tree, url } from '@angular-devkit/schematics';
+import { Schema as SchematicComponentHeader } from './schema';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
@@ -22,12 +23,12 @@ export function ngSuper(_options: any): Rule {
     const sourceTemplate = url("./files");
 
     const sourceParameterizeTemplate = apply(sourceTemplate, [
-      template({ ..._options, ...strings }),
-      move(path)
-    ]);
+      applyTemplates({ ..._options, ...strings }),
+      move(normalize(path as string))    ]);
 
     tree = mergeWith(sourceParameterizeTemplate)(tree,_context) as Tree;
 
     return tree;
   };
 }
+
