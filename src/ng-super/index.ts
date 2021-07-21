@@ -39,6 +39,7 @@ export function ngSuper(options: SchematicComponentHeader): Rule {
       applyTemplates({
        ...strings,
         name: options.name,
+        store: options.store,
         selector: options.selector,
       }),
       move(normalize(options.path as string))

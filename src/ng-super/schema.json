@@ -12,10 +12,12 @@
 			"description": "Mega Module Name",
 			"x-prompt": "What is the mega entity name?"
 		},
-		"selector": {
-			"type": "string",
-			"format": "html-selector",
-			"description": "The HTML selector to use for this component."
+		"store": {
+			"type": "boolean",
+			"description": "This property for including the store in the module.",
+			"default": false,
+			"x-prompt": "Do you want to setup the store(ngrx) in the module?"
+
 		}
 	},
 	"required": [
