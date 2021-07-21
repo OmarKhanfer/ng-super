@@ -7,6 +7,7 @@ import {
   Rule,
   SchematicContext,
   SchematicsException,
+  template,
   Tree,
   url,
 } from "@angular-devkit/schematics";
@@ -31,7 +32,7 @@ export function ngSuper(_options: any): Rule {
     const sourceTemplate = url("./files");
 
     const sourceParameterizeTemplate = apply(sourceTemplate, [
-      applyTemplates({ ..._options, ...strings }),
+      template({ ..._options, ...strings }),
       move(normalize(path as string)),
     ]);
 
