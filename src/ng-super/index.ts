@@ -1,43 +1,59 @@
-import { normalize, strings } from "@angular-devkit/core";
-import {
-  apply,
-  applyTemplates,
-  mergeWith,
-  move,
-  Rule,
-  SchematicContext,
-  SchematicsException,
-  template,
-  Tree,
-  url,
-} from "@angular-devkit/schematics";
+import {  normalize, strings } from '@angular-devkit/core';
+import { apply, applyTemplates, chain, mergeWith, move, Rule, SchematicsException,    Tree, url,   } from '@angular-devkit/schematics';
+import { Schema as SchematicComponentHeader } from './schema';
+
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngSuper(_options: any): Rule {
-  return (tree: Tree, _context: SchematicContext) => {
+export function ngSuper(options: SchematicComponentHeader): Rule {
+  return (tree: Tree) => {
+    const workspaceConfig = tree.read('/angular.json');
+    if (!workspaceConfig) {
+      throw new SchematicsException('Could not find Angular workspace configuration');
+    }
+
+    // convert workspace to string
     const workspaceAsBugger = tree.read("angular.json");
     if (!workspaceAsBugger) {
       throw new SchematicsException("Not an Angular Project");
     }
     const workspace = JSON.parse(workspaceAsBugger.toString());
 
-    const projectName = _options.project || workspace.defaultProject;
+    if (!options.project) {
+      options.project = workspace.defaultProject;
+    }
+
+    const projectName = options.project as string;
+
     const project = workspace.projects[projectName];
 
-    let path = `${project.sourceRoot}/${
-      project.projectType == "application" ? "app" : "lib"
-    }`;
+    const projectType = project.projectType === 'application' ? 'app' : 'lib';
 
-    const sourceTemplate = url("./files");
+    if (options.path === undefined) {
+      options.path = `${project.sourceRoot}/${projectType}`;
+    }
 
-    const sourceParameterizeTemplate = apply(sourceTemplate, [
-      template({ ..._options, ...strings }),
-      move(normalize(path as string)),
+    options.selector = options.selector || buildSelector(options, project && project.prefix || '')
+
+    const templateSource = apply(url('./files'), [
+      applyTemplates({
+       ...strings,
+        name: options.name,
+        selector: options.selector,
+      }),
+      move(normalize(options.path as string))
     ]);
 
-    tree = mergeWith(sourceParameterizeTemplate)(tree, _context) as Tree;
-
-    return tree;
+    return chain([
+      mergeWith(templateSource)
+    ]);
   };
+}
+function buildSelector(options: SchematicComponentHeader, projectPrefix: string) {
+  let selector = strings.dasherize(options.name);
+  if (projectPrefix) {
+    selector = `${projectPrefix}-${selector}`;
+  }
+
+  return selector;
 }
