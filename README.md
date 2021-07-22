@@ -9,6 +9,12 @@ This schematics will allow you to generate scaffolded module, contains the follo
 
 # Installation
 To install the component
-'''
-npm i ng-super -s
-'''
+```
+ npm i ng-super -s
+ ```
+ 
+ # Usage
+ ```
+ ng g ng-super:sp module-name
+ ng g ng-super:ng-super module name
+ ```

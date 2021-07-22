@@ -1,15 +1,28 @@
-import {  normalize, strings } from '@angular-devkit/core';
-import { apply, applyTemplates, chain, mergeWith, move, Rule, SchematicsException,    Tree, url,   } from '@angular-devkit/schematics';
-import { Schema as SchematicComponentHeader } from './schema';
-
+import { normalize, strings } from "@angular-devkit/core";
+import {
+  apply,
+  applyTemplates,
+  chain,
+  filter,
+  mergeWith,
+  move,
+  noop,
+  Rule,
+  SchematicsException,
+  Tree,
+  url,
+} from "@angular-devkit/schematics";
+import { Schema as SchematicComponentHeader } from "./schema";
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
 export function ngSuper(options: SchematicComponentHeader): Rule {
   return (tree: Tree) => {
-    const workspaceConfig = tree.read('/angular.json');
+    const workspaceConfig = tree.read("/angular.json");
     if (!workspaceConfig) {
-      throw new SchematicsException('Could not find Angular workspace configuration');
+      throw new SchematicsException(
+        "Could not find Angular workspace configuration"
+      );
     }
 
     // convert workspace to string
@@ -27,30 +40,32 @@ export function ngSuper(options: SchematicComponentHeader): Rule {
 
     const project = workspace.projects[projectName];
 
-    const projectType = project.projectType === 'application' ? 'app' : 'lib';
+    const projectType = project.projectType === "application" ? "app" : "lib";
 
     if (options.path === undefined) {
       options.path = `${project.sourceRoot}/${projectType}`;
     }
 
-    options.selector = options.selector || buildSelector(options, project && project.prefix || '')
-
-    const templateSource = apply(url('./files'), [
+    options.selector =
+      options.selector ||
+      buildSelector(options, (project && project.prefix) || "");
+    console.log(options);
+    const templateSource = apply(url("./files"), [
+      options.store ? noop() : filter((path) => !path.includes("store")),
       applyTemplates({
-       ...strings,
-        name: options.name,
-        store: options.store,
-        selector: options.selector,
+        ...strings,
+        ...options,
       }),
-      move(normalize(options.path as string))
+      move(normalize(options.path as string)),
     ]);
 
-    return chain([
-      mergeWith(templateSource)
-    ]);
+    return chain([mergeWith(templateSource)]);
   };
 }
-function buildSelector(options: SchematicComponentHeader, projectPrefix: string) {
+function buildSelector(
+  options: SchematicComponentHeader,
+  projectPrefix: string
+) {
   let selector = strings.dasherize(options.name);
   if (projectPrefix) {
     selector = `${projectPrefix}-${selector}`;

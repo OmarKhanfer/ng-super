@@ -14,10 +14,9 @@
 		},
 		"store": {
 			"type": "boolean",
-			"description": "This property for including the store in the module.",
-			"default": false,
-			"x-prompt": "Do you want to setup the store(ngrx) in the module?"
-
+			"default":"no-store",
+			"description": "Create the new files at the top level of the current project root. ",
+			"x-prompt": "Do you want to use store(ngrx)?"
 		}
 	},
 	"required": [
