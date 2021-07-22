@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "ng-super": {
-      "description": "A blank schematic.",
+      "description": "Ng Super for scaffolding code in less time",
       "factory": "./ng-super/index#ngSuper",
       "schema": "./ng-super/schema.json",
       "aliases": ["sp"]

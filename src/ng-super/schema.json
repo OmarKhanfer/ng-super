@@ -9,14 +9,18 @@
 				"$source": "argv",
 				"index": 0
 			},
-			"description": "Mega Module Name",
-			"x-prompt": "What is the mega entity name?"
+			"description": "Super Module Name",
+			"x-prompt": "What is the entity name?"
 		},
 		"store": {
 			"type": "boolean",
-			"default":"no-store",
-			"description": "Create the new files at the top level of the current project root. ",
+			"description": "Flag to include the ngrx files settings in the module scaffolding",
 			"x-prompt": "Do you want to use store(ngrx)?"
+		},
+		"resolver": {
+			"type": "boolean",
+			"description": "Flag to include the url resolvers files settings in the module scaffolding",
+			"x-prompt": "Do you want to use url-resolvers?"
 		}
 	},
 	"required": [

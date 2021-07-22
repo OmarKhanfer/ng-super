@@ -9,20 +9,26 @@ So it will generate the below:
 - URL Resolvers (optional)
 - Entity Store (optional)
 
+## Table of Contents
 
-# Installation
+* [Installation](#installation)
+* [Usage](#usage)
+* [Output File Example](#example)
+* [Output Code](#code)
+
+# Installation[](#installation) 
 To install the component
 ```
  npm i ng-super -s
  ```
  
- # Usage
+ # Usage[](#usage)
 ```
  ng g ng-super:sp module-name
  ng g ng-super:ng-super module-name
 ```
 
-# Output
+# Output Files Example[](#example)
 Suppose we want to create new module called user-registration, you can run the command using the following
 ```
 ng g ng-super:sp student-registration
@@ -40,6 +46,7 @@ CREATE src/app/student-registration/store/student-registration.reducers.ts (2787
 CREATE src/app/student-registration/store/student-registration.selectors.ts (989 bytes)
 CREATE src/app/student-registration/store/student-registration.state.ts (307 bytes)
 
+# Output Code[](#code)
 #### Entity Module
 In case you are disabling the store
 
