@@ -1,6 +1,6 @@
 {
   "name": "ng-super",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "It is an anglar custom schematics, allow you to scaffold main files for any module in less time and efforts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
