@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { <%=classify(name)%>RoutingModule } from './<%=name%>-routing.module';
 <% if (store) { %>import { <%=classify(name)%>Reducers } from './store/<%=name%>.reducers';
-import { <%=classify(name)%>Effects } from './store/<%=name%>.effects';<% } %> 
+import { <%=classify(name)%>Effects } from './store/<%=name%>.effects';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from "@ngrx/effects";<% } %> 
 
 @NgModule({
   declarations: [],
