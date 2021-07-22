@@ -41,4 +41,43 @@ export class <%=classify(name)%>Effects {
     }),
     catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>sListFailed(resp.error)))
   );
+
+  @Effect() 
+  delete<%=classify(name)%>$ = this.actions$.pipe(
+    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_REQUEST),
+    switchMap((req: any) => {
+      return this.service.delete<%=classify(name)%>(req.id).pipe(
+        map((resp: any) => {
+          return new <%=camelize(classify(name))%>Actions.<%=classify(name)%>DeleteSuccess(resp);
+        })
+      );
+    }),
+    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>DeleteFailed(resp.error)))
+  );
+
+  @Effect()
+  save<%=classify(name)%>$ = this.actions$.pipe(
+    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_REQUEST),
+    switchMap((req: any) => {
+      return this.service.save<%=classify(name)%>(req.payload).pipe(
+        map((resp: any) => {
+          return new <%=camelize(classify(name))%>Actions.<%=classify(name)%>CreateSuccess(resp);
+        })
+      );
+    }),
+    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>CreateFailed(resp.error)))
+  );
+
+  @Effect()
+  update<%=classify(name)%>$ = this.actions$.pipe(
+    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_REQUEST),
+    switchMap((req: any) => {
+      return this.service.save<%=classify(name)%>(req.payload).pipe(
+        map((resp: any) => {
+          return new <%=camelize(classify(name))%>Actions.<%=classify(name)%>UpdateSuccess(resp);
+        })
+      );
+    }),
+    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>UpdateFailed(resp.error)))
+  );
 }
