@@ -1,6 +1,6 @@
 {
   "name": "ng-super",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "It is an anglar custom schematics, allow you to scaffold main files for any module in less time and efforts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -8,7 +8,10 @@
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
-    "schematics", "Angular Schematics", "Angular", "Scaffolding"
+    "schematics",
+    "Angular Schematics",
+    "Angular",
+    "Scaffolding"
   ],
   "author": "Omar Aljaber",
   "license": "MIT",
