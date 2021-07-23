@@ -34,16 +34,16 @@ Suppose we want to create new module called user-registration, you can run the c
 ng g ng-super:sp student-registration
 ```
 the output of the files will be
-> CREATE src/app/student-registration/student-registration-routing.module.ts (272 bytes)
-> CREATE src/app/student-registration/student-registration.module.ts (684 bytes)
-> CREATE src/app/student-registration/configs/student-registration-api.config.ts (217 bytes)
-> CREATE src/app/student-registration/resolvers/student-registration-details.resolver.ts (1118 bytes)      
-> CREATE src/app/student-registration/resolvers/student-registration-list.resolver.ts (1094 bytes)
-> CREATE src/app/student-registration/services/student-registration.service.ts (942 bytes)
-> CREATE src/app/student-registration/store/student-registration.actions.ts (5966 bytes)
-> CREATE src/app/student-registration/store/student-registration.effects.ts (1733 bytes)
-> CREATE src/app/student-registration/store/student-registration.reducers.ts (2787 bytes)
-> CREATE src/app/student-registration/store/student-registration.selectors.ts (989 bytes)
+> CREATE src/app/student-registration/student-registration-routing.module.ts (272 bytes)<br>
+> CREATE src/app/student-registration/student-registration.module.ts (684 bytes)<br>
+> CREATE src/app/student-registration/configs/student-registration-api.config.ts (217 bytes)<br>
+> CREATE src/app/student-registration/resolvers/student-registration-details.resolver.ts (1118 bytes)<br>
+> CREATE src/app/student-registration/resolvers/student-registration-list.resolver.ts (1094 bytes)<br>
+> CREATE src/app/student-registration/services/student-registration.service.ts (942 bytes)<br>
+> CREATE src/app/student-registration/store/student-registration.actions.ts (5966 bytes)<br>
+> CREATE src/app/student-registration/store/student-registration.effects.ts (1733 bytes)<br>
+> CREATE src/app/student-registration/store/student-registration.reducers.ts (2787 bytes)<br>
+> CREATE src/app/student-registration/store/student-registration.selectors.ts (989 bytes)<br>
 > CREATE src/app/student-registration/store/student-registration.state.ts (307 bytes)
 
 # Output Code[](#code)
