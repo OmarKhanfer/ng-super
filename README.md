@@ -46,7 +46,7 @@ to use super store
 # Output Files Example[](#example)
 Suppose we want to create new module called user-registration, you can run the command using the following
 ```
-ng g ng-super:sp student-registration
+ng g ng-super:sm student-registration
 ```
 the output of the files will be
 > CREATE src/app/student-registration/student-registration-routing.module.ts (272 bytes)<br>
