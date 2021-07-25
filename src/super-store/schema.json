@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"id": "superModule",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"description": "Super Module Name",
+			"x-prompt": "What is the entity name?"
+		},
+		"store": {
+			"type": "boolean",
+			"description": "Flag to include the ngrx files settings in the module scaffolding"
+		}
+	},
+	"required": [
+		"name"
+	]
+}

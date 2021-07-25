@@ -1,11 +1,18 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "extends":"@schematics/angular/collection.json",
   "schematics": {
-    "ng-super": {
+    "super-module": {
       "description": "Ng Super for scaffolding code in less time",
-      "factory": "./ng-super/index#ngSuper",
-      "schema": "./ng-super/schema.json",
-      "aliases": ["sp"]
+      "factory": "./super-module/index#superModule",
+      "schema": "./super-module/schema.json",
+      "aliases": ["sm"]
+    },
+    "super-store": {
+      "description": "A blank schematic.",
+      "factory": "./super-store/index#superStore",
+      "schema": "./super-store/schema.json",
+      "aliases": ["ss"]
     }
   }
 }

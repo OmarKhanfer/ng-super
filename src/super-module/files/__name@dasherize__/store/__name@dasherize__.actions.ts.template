@@ -30,6 +30,12 @@ export enum <%=classify(name)%>sActionTypes {
   <%=underscore(name).toUpperCase() %>_UPDATE_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Update",
   <%=underscore(name).toUpperCase() %>_UPDATE_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Update",
   //#endregion
+
+   //#region <%=underscore(name)%> Filter List
+  <%=underscore(name).toUpperCase() %>_FILTER_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Filter List",
+  <%=underscore(name).toUpperCase() %>_FILTER_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Filter List",
+  <%=underscore(name).toUpperCase() %>_FILTER_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Filter List",
+  //#endregion
 }
 
 //#region <%=underscore(name) %> List Implementation
@@ -147,9 +153,34 @@ export class <%=classify(name)%>UpdateFailed implements Action {
 }
 //#endregion
 
+
+//#region Filter <%=underscore(name) %> List Implementation
+export class <%=classify(name)%>FilterRequest implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_REQUEST;
+
+  constructor(public payload :any) {}
+
+}
+
+export class <%=classify(name)%>FilterSuccess implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_SUCCESS;
+
+  constructor(public filters :any) {}
+
+}
+
+export class <%=classify(name)%>FilterFailed implements Action {
+  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_FAILED;
+
+  constructor(public error :any) {}
+
+}
+//#endregion
+
 export type <%=classify(name)%>sActions =
 | <%=classify(name)%>sListRequest | <%=classify(name)%>sListSuccess | <%=classify(name)%>sListFailed
 | <%=classify(name)%>DetailsRequest | <%=classify(name)%>DetailsSuccess | <%=classify(name)%>DetailsFailed
 | <%=classify(name)%>DeleteRequest | <%=classify(name)%>DeleteSuccess | <%=classify(name)%>DeleteFailed
 | <%=classify(name)%>CreateRequest | <%=classify(name)%>CreateSuccess | <%=classify(name)%>CreateFailed
-| <%=classify(name)%>UpdateRequest | <%=classify(name)%>UpdateSuccess | <%=classify(name)%>UpdateFailed;
+| <%=classify(name)%>UpdateRequest | <%=classify(name)%>UpdateSuccess | <%=classify(name)%>UpdateFailed
+| <%=classify(name)%>FilterRequest | <%=classify(name)%>FilterSuccess | <%=classify(name)%>FilterFailed;

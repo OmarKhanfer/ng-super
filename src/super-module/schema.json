@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/schema",
-	"id": "megaModule",
+	"id": "superModule",
 	"type": "object",
 	"properties": {
 		"name": {

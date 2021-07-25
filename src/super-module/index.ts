@@ -18,7 +18,7 @@ import { Schema as SchematicComponentHeader } from "./schema";
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngSuper(options: SchematicComponentHeader): Rule {
+export function superModule(options: SchematicComponentHeader): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const workspaceConfig = tree.read("/angular.json");
     if (!workspaceConfig) {
@@ -33,6 +33,8 @@ export function ngSuper(options: SchematicComponentHeader): Rule {
       throw new SchematicsException("Not an Angular Project");
     }
     const workspace = JSON.parse(workspaceAsBugger.toString());
+
+    workspace['cli']['defaultCollection']='ng-super';
 
     if (!options.project) {
       options.project = workspace.defaultProject;
@@ -54,6 +56,7 @@ export function ngSuper(options: SchematicComponentHeader): Rule {
 
     const templateSource = apply(url("./files"), [
       options.store ? noop() : filter((path) => !path.includes("store")),
+      options.resolver ? noop() : filter((path) => !path.includes("resolvers")),
       applyTemplates({
         ...strings,
         ...options,
