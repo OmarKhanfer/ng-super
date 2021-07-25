@@ -1,17 +1,11 @@
-# What is Ng Super
-It is a custom schematics, which allow you to generate scaffolded bunch of code, to reduce the efforts and time in development.
-So it will generate the below:
+# What is Ng Super Sechematics Collection
 
-- Entity Module
-- Entity Routes Module
-- Service for the entity contains the crud methods
-- Configs class for the entity API's links
-- URL Resolvers (optional)
-- Entity Store (optional)
+It is a custom schematics collection, which allow you to generate scaffolded bunch of code, to reduce the efforts and time in development.
 
 ## Table of Contents
 
 * [Installation](#installation)
+* [Schematics](#schematics)
 * [Usage](#usage)
 * [Output File Example](#example)
 * [Output Code](#code)
@@ -19,14 +13,35 @@ So it will generate the below:
 # Installation[](#installation) 
 To install the component
 ```
- npm i ng-super -s
- ```
+npm i ng-super -s
+```
  
- # Usage[](#usage)
+# Schematics[](#schematics) 
+
+| Name           | Description                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------|
+| super-module   | Generates Module, Module's Route, API Config, URL Resolvers, NGRX files for (CRUD) operations and filter, contains actions, reducers, effects, selectors and state, Service for (CRUD) operations.                         |
+| super-store    | Generates NGRX files for (CRUD) operations and filter, contains actions, reducers, effects, selectors and state. |
+
+
+# Usage[](#usage)
+### Super Module
+To use Super Module
 ```
- ng g ng-super:sp module-name
- ng g ng-super:ng-super module-name
+ ng g ng-super:sm entity-name
+ ng g ng-super:super-module entity-name
 ```
+
+### Super Store
+to use super store
+```
+ ng g ng-super:ss entity-name
+ ng g ng-super:super-store entity-name
+```
+
+> This is extended to @schematics/angular, if you change the defaultCollection in angular.json to package 
+> you can use it without **ng-super:**
+
 
 # Output Files Example[](#example)
 Suppose we want to create new module called user-registration, you can run the command using the following
@@ -150,3 +165,7 @@ export class StudentRegistrationService {
   }
 }
 ```
+
+
+
+
