@@ -5,6 +5,8 @@ import { of } from 'rxjs';
 import { map, switchMap, catchError, withLatestFrom, tap} from 'rxjs/operators';
 import * as <%=camelize(classify(name))%>Actions from './<%=name%>.actions';
 import { <%=classify(name)%>State } from './<%=name%>.state';
+import { <%=classify(name)%>Service } from "../services/<%=name%>.service";
+
 @Injectable({
   providedIn: 'root'
 })

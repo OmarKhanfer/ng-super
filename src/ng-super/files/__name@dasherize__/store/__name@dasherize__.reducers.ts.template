@@ -52,7 +52,7 @@ export function <%=classify(name)%>Reducers(
       return { ...state,errors:null };
     }
     case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_FAILED: {
-      return { ...state, error: action.error };
+      return { ...state, errors: action.error };
     }
     //#endregion
 
@@ -65,7 +65,7 @@ export function <%=classify(name)%>Reducers(
       return { ...state,errors:null };
     }
     case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_FAILED: {
-      return { ...state, error: action.error };
+      return { ...state, errors: action.error };
     }
     //#endregion
 
