@@ -39,6 +39,8 @@ export function superModule(options: SchematicComponentHeader): Rule {
     const projectType = project.projectType === "application" ? "app" : "lib";
 
     if (options.path === undefined) {
+      options.path = `${project.sourceRoot}/${projectType}`;
+    } else {
       options.path = `${project.sourceRoot}/${projectType}/${options.path}`;
     }
 
