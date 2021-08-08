@@ -21,6 +21,14 @@
 			"type": "boolean",
 			"description": "Flag to include the url resolvers files settings in the module scaffolding",
 			"x-prompt": "Do you want to use url-resolvers?"
+		},
+		"project": {
+			"type": "string",
+			"description": "Project name where you want to generate the module"
+		},
+		"path": {
+			"type":"string",
+			"description": "Path of the module you want to generate"
 		}
 	},
 	"required": [

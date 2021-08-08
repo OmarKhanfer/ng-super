@@ -20,12 +20,6 @@ import { Schema as SchematicComponentHeader } from "./schema";
 // per file.
 export function superModule(options: SchematicComponentHeader): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const workspaceConfig = tree.read("/angular.json");
-    if (!workspaceConfig) {
-      throw new SchematicsException(
-        "Could not find Angular workspace configuration"
-      );
-    }
 
     // convert workspace to string
     const workspaceAsBugger = tree.read("angular.json");
@@ -33,8 +27,6 @@ export function superModule(options: SchematicComponentHeader): Rule {
       throw new SchematicsException("Not an Angular Project");
     }
     const workspace = JSON.parse(workspaceAsBugger.toString());
-
-    workspace['cli']['defaultCollection']='ng-super';
 
     if (!options.project) {
       options.project = workspace.defaultProject;
@@ -47,7 +39,7 @@ export function superModule(options: SchematicComponentHeader): Rule {
     const projectType = project.projectType === "application" ? "app" : "lib";
 
     if (options.path === undefined) {
-      options.path = `${project.sourceRoot}/${projectType}`;
+      options.path = `${project.sourceRoot}/${projectType}/${options.path}`;
     }
 
     options.selector =
