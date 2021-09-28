@@ -14,11 +14,11 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-import { Schema as SchematicComponentHeader } from "./schema";
+import { Schema  } from "./schema";
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function superModule(options: SchematicComponentHeader): Rule {
+export function superModule(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
 
     // convert workspace to string
@@ -44,9 +44,7 @@ export function superModule(options: SchematicComponentHeader): Rule {
       options.path = `${project.sourceRoot}/${projectType}/${options.path}`;
     }
 
-    options.selector =
-      options.selector ||
-      buildSelector(options, (project && project.prefix) || "");
+    options.selector = options.selector || buildSelector(options, (project && project.prefix) || "");
 
     const templateSource = apply(url("./files"), [
       options.store ? noop() : filter((path) => !path.includes("store")),
@@ -66,7 +64,7 @@ export function superModule(options: SchematicComponentHeader): Rule {
 }
 
 function buildSelector(
-  options: SchematicComponentHeader,
+  options: Schema,
   projectPrefix: string
 ) {
   let selector = strings.dasherize(options.name);

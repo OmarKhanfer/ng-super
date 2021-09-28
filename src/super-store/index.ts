@@ -14,18 +14,13 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-import { Schema as SchematicComponentHeader } from "./schema";
+import { Schema } from "./schema";
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function superStore(options: SchematicComponentHeader): Rule {
+export function superStore(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const workspaceConfig = tree.read("/angular.json");
-    if (!workspaceConfig) {
-      throw new SchematicsException(
-        "Could not find Angular workspace configuration"
-      );
-    }
+    
 
     // convert workspace to string
     const workspaceAsBugger = tree.read("angular.json");
@@ -72,7 +67,7 @@ export function superStore(options: SchematicComponentHeader): Rule {
 }
 
 function buildSelector(
-  options: SchematicComponentHeader,
+  options: Schema,
   projectPrefix: string
 ) {
   let selector = strings.dasherize(options.name);

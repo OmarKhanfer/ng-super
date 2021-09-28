@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { Effect, Actions, ofType,createEffect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { map, switchMap, catchError, withLatestFrom, tap} from 'rxjs/operators';
-import * as <%=camelize(classify(name))%>Actions from './<%=name%>.actions';
+import * as <%=camelize(name)%>Actions from './<%=name%>.actions';
 import { <%=classify(name)%>State } from './<%=name%>.state';
 import { <%=classify(name)%>Service } from '../services/<%=name%>.service';
 @Injectable({
   providedIn: 'root'
 })
-export class <%=classify(name)%>Effects {
+export class <%=camelize(name)%>Effects {
   constructor(
     private actions$: Actions,
     private store: Store<<%=classify(name)%>State>,
@@ -17,77 +17,66 @@ export class <%=classify(name)%>Effects {
 
   }
 
-  @Effect()
-  query<%=classify(name)%>sList$ = this.actions$.pipe(
-    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_REQUEST),
+  query<%=classify(name)%>List$ =  createEffect(() => this.actions$.pipe(
+    ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>ListRequestAction),
     switchMap((req: any) => {
       return this.service.get<%=classify(name)%>sList().pipe(
-        map((resp: any) => {
-          return new <%=camelize(classify(name))%>Actions.<%=classify(name)%>sListSuccess(resp);
-        })
+        map((resp: any) => <%=camelize(name)%>Actions.<%=camelize(name)%>ListSuccessAction(resp))
       );
     }),
-    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>sListFailed(resp)))
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>ListFailedAction(resp))))
   );
 
-  @Effect()
-  query<%=classify(name)%>Details$ = this.actions$.pipe(
-    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_REQUEST),
+ query<%=classify(name)%>Details$ = createEffect(() => this.actions$.pipe(
+    ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>DetailsRequestAction),
     switchMap((req: any) => {
-      return this.service.get<%=classify(name)%>Details(req.id).pipe(
-        map((resp: any) => {
-          return new <%=camelize(classify(name))%>Actions.<%=classify(name)%>sListSuccess(resp);
-        })
+      return this.service.get<%=classify(name)%>sList().pipe(
+        map((resp: any) => <%=camelize(name)%>Actions.<%=camelize(name)%>DetailsSuccessAction(resp))
       );
     }),
-    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>sListFailed(resp.error)))
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>DetailsFailedAction(resp))))
   );
 
-  @Effect() 
-  delete<%=classify(name)%>$ = this.actions$.pipe(
-    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_REQUEST),
+
+  delete<%=classify(name)%>$ = createEffect(() => this.actions$.pipe(
+    ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>DeleteRequestAction),
     switchMap((req: any) => {
       return this.service.delete<%=classify(name)%>(req.id).pipe(
-        map((resp: any) => {
-          return new <%=camelize(classify(name))%>Actions.<%=classify(name)%>DeleteSuccess(resp);
-        })
+        map((resp: any) => <%=camelize(name)%>Actions.<%=camelize(name)%>DeleteSuccessAction(resp))
       );
     }),
-    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>DeleteFailed(resp.error)))
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>DeleteFailedAction(resp.error))))
   );
 
-  @Effect()
-  save<%=classify(name)%>$ = this.actions$.pipe(
-    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_REQUEST),
+  save<%=classify(name)%>$ = createEffect(() => this.actions$.pipe(
+    ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>CreateRequestAction),
     switchMap((req: any) => {
       return this.service.save<%=classify(name)%>(req.payload).pipe(
-        map((resp: any) => {
-          return new <%=camelize(classify(name))%>Actions.<%=classify(name)%>CreateSuccess(resp);
-        })
+        map((resp: any) => <%=camelize(name)%>Actions.<%=camelize(name)%>CreateSuccessAction)
       );
     }),
-    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>CreateFailed(resp.error)))
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>CreateFailedAction(resp.error))))
   );
 
-  @Effect()
-  update<%=classify(name)%>$ = this.actions$.pipe(
-    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_REQUEST),
+  update<%=classify(name)%>$ =  createEffect(() => this.actions$.pipe(
+    ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>UpdateRequestAction),
     switchMap((req: any) => {
       return this.service.save<%=classify(name)%>(req.payload).pipe(
-        map((resp: any) => {
-          return new <%=camelize(classify(name))%>Actions.<%=classify(name)%>UpdateSuccess(resp);
-        })
+        map((resp: any) => <%=camelize(name)%>Actions.<%=camelize(name)%>UpdateSuccessAction(resp))
       );
     }),
-    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>UpdateFailed(resp.error)))
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>UpdateFailedAction(resp.error))))
   );
 
-  @Effect()
   filter<%=classify(name)%>sList$ = this.actions$.pipe(
-    ofType(<%=camelize(classify(name))%>Actions.<%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_REQUEST),
-    switchMap((req: any) => {
-          return of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>FilterSuccess(req.filters));
-    }),
-    catchError((resp: any) => of(new <%=camelize(classify(name))%>Actions.<%=classify(name)%>UpdateFailed(resp.error)))
+    ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterRequestAction),
+    switchMap((req: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterSuccessAction(req.filter))),
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterFailedAction(resp.error)))
+  );
+
+  Sort<%=classify(name)%>sList$ = this.actions$.pipe(
+    ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingRequestAction),
+    switchMap((req: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingSuccessAction(req.sorting))),
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingFailedAction(resp.error)))
   );
 }

@@ -1,186 +1,43 @@
-import { Action } from '@ngrx/store';
+import { Action, createAction, props } from '@ngrx/store';
 
-export enum <%=classify(name)%>sActionTypes {
-  //#region <%=underscore(name)%> List Section
-  <%=underscore(name).toUpperCase() %>S_LIST_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %>s List",
-  <%=underscore(name).toUpperCase() %>S_LIST_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %>s List",
-  <%=underscore(name).toUpperCase() %>S_LIST_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %>s List",
-  //#endregion
-
-  //#region <%=underscore(name)%> Details Section
-  <%=underscore(name).toUpperCase() %>_DETAILS_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> Details",
-  <%=underscore(name).toUpperCase() %>_DETAILS_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> Details",
-  <%=underscore(name).toUpperCase() %>_DETAILS_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> Details",
-  //#endregion
-
-  //#region <%=underscore(name)%> Delete Section
-  <%=underscore(name).toUpperCase() %>_DELETE_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Delete",
-  <%=underscore(name).toUpperCase() %>_DELETE_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Delete",
-  <%=underscore(name).toUpperCase() %>_DELETE_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Delete",
-  //#endregion
-
-  //#region <%=underscore(name)%> Create Section
-  <%=underscore(name).toUpperCase() %>_CREATE_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Save",
-  <%=underscore(name).toUpperCase() %>_CREATE_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Save",
-  <%=underscore(name).toUpperCase() %>_CREATE_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Save",
-  //#endregion
-
-  //#region <%=underscore(name)%> Update Section
-  <%=underscore(name).toUpperCase() %>_UPDATE_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Update",
-  <%=underscore(name).toUpperCase() %>_UPDATE_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Update",
-  <%=underscore(name).toUpperCase() %>_UPDATE_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Update",
-  //#endregion
-
-   //#region <%=underscore(name)%> Filter List
-  <%=underscore(name).toUpperCase() %>_FILTER_REQUEST = "[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Filter List",
-  <%=underscore(name).toUpperCase() %>_FILTER_SUCCESS = "[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Filter List",
-  <%=underscore(name).toUpperCase() %>_FILTER_FAILED = "[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Filter List",
-  //#endregion
-}
-
-//#region <%=underscore(name) %> List Implementation
-export class <%=classify(name)%>sListRequest implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_REQUEST;
-
-  constructor(public payload:any) {}
-
-}
-
-export class <%=classify(name)%>sListSuccess implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_SUCCESS;
-
-  constructor(public response:any) {}
-
-}
-
-export class <%=classify(name)%>sListFailed implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_FAILED;
-
-  constructor(public error:any) {}
-
-}
+//#region <%=underscore(name)%> List Section
+export const <%=camelize(name)%>ListRequestAction = createAction('[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> List',props<{ payload:any; }>());
+export const <%=camelize(name)%>ListSuccessAction = createAction('[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> List',props<{ response: any;}>());
+export const <%=camelize(name)%>ListFailedAction  = createAction('[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> List',props<{ error: any;}>());
 //#endregion
 
-//#region <%=underscore(name) %> Details Implementation
-export class <%=classify(name)%>DetailsRequest implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_REQUEST;
-
-  constructor(public id :any) {}
-
-}
-
-export class <%=classify(name)%>DetailsSuccess implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_SUCCESS;
-
-  constructor(public response :any) {}
-
-}
-
-export class <%=classify(name)%>DetailsFailed implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_FAILED;
-
-  constructor(public error :any) {}
-
-}
+//#region <%=underscore(name)%> Details Section
+export const <%=camelize(name)%>DetailsRequestAction = createAction('[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> Details',props<{ payload:any; }>());
+export const <%=camelize(name)%>DetailsSuccessAction = createAction('[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> Details',props<{ response: any;}>());
+export const <%=camelize(name)%>DetailsFailedAction  = createAction('[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %>s List',props<{ error: any;}>());
 //#endregion
 
-//#region Delete <%=underscore(name) %> Implementation
-export class <%=classify(name)%>DeleteRequest implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_REQUEST;
-
-  constructor(public payload :any) {}
-
-}
-
-export class <%=classify(name)%>DeleteSuccess implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_SUCCESS;
-
-  constructor(public response :any) {}
-
-}
-
-export class <%=classify(name)%>DeleteFailed implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_FAILED;
-
-  constructor(public error :any) {}
-
-}
+//#region <%=underscore(name)%> Delete Section
+export const <%=camelize(name)%>DeleteRequestAction = createAction('[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Delete',props<{ payload:any; }>());
+export const <%=camelize(name)%>DeleteSuccessAction = createAction('[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Delete',props<{ response: any;}>());
+export const <%=camelize(name)%>DeleteFailedAction  = createAction('[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Delete',props<{ error: any;}>());
 //#endregion
 
-//#region Create <%=underscore(name) %> Implementation
-export class <%=classify(name)%>CreateRequest implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_REQUEST;
-
-  constructor(public payload :any) {}
-
-}
-
-export class <%=classify(name)%>CreateSuccess implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_SUCCESS;
-
-  constructor(public response :any) {}
-
-}
-
-export class <%=classify(name)%>CreateFailed implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_FAILED;
-
-  constructor(public error :any) {}
-
-}
+//#region <%=underscore(name)%> Create Section
+export const <%=camelize(name)%>CreateRequestAction = createAction('[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Save',props<{ payload:any; }>());
+export const <%=camelize(name)%>CreateSuccessAction = createAction('[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Save',props<{ response: any;}>());
+export const <%=camelize(name)%>CreateFailedAction  = createAction('[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Save',props<{ error: any;}>());
 //#endregion
 
-//#region Update <%=underscore(name) %> Implementation
-export class <%=classify(name)%>UpdateRequest implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_REQUEST;
-
-  constructor(public payload :any) {}
-
-}
-
-export class <%=classify(name)%>UpdateSuccess implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_SUCCESS;
-
-  constructor(public response :any) {}
-
-}
-
-export class <%=classify(name)%>UpdateFailed implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_FAILED;
-
-  constructor(public error :any) {}
-
-}
+//#region <%=underscore(name)%> Update Section
+export const <%=camelize(name)%>UpdateRequestAction = createAction('[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Update',props<{ payload:any; }>());
+export const <%=camelize(name)%>UpdateSuccessAction = createAction('[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Update',props<{ response: any;}>());
+export const <%=camelize(name)%>UpdateFailedAction  = createAction('[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Update',props<{ error: any;}>());
 //#endregion
 
-
-//#region Filter <%=underscore(name) %> List Implementation
-export class <%=classify(name)%>FilterRequest implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_REQUEST;
-
-  constructor(public payload :any) {}
-
-}
-
-export class <%=classify(name)%>FilterSuccess implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_SUCCESS;
-
-  constructor(public filters :any) {}
-
-}
-
-export class <%=classify(name)%>FilterFailed implements Action {
-  readonly type = <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_FAILED;
-
-  constructor(public error :any) {}
-
-}
+//#region <%=underscore(name)%> Filter List Section
+export const <%=camelize(name)%>FilterRequestAction = createAction('[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Filter List',props<{ payload:any; }>());
+export const <%=camelize(name)%>FilterSuccessAction = createAction('[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Filter List',props<{ filter: any;}>());
+export const <%=camelize(name)%>FilterFailedAction  = createAction('[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Filter List',props<{ error: any;}>());
 //#endregion
 
-export type <%=classify(name)%>sActions =
-| <%=classify(name)%>sListRequest | <%=classify(name)%>sListSuccess | <%=classify(name)%>sListFailed
-| <%=classify(name)%>DetailsRequest | <%=classify(name)%>DetailsSuccess | <%=classify(name)%>DetailsFailed
-| <%=classify(name)%>DeleteRequest | <%=classify(name)%>DeleteSuccess | <%=classify(name)%>DeleteFailed
-| <%=classify(name)%>CreateRequest | <%=classify(name)%>CreateSuccess | <%=classify(name)%>CreateFailed
-| <%=classify(name)%>UpdateRequest | <%=classify(name)%>UpdateSuccess | <%=classify(name)%>UpdateFailed
-| <%=classify(name)%>FilterRequest | <%=classify(name)%>FilterSuccess | <%=classify(name)%>FilterFailed;
+//#region <%=underscore(name)%> Sorting List Section
+export const <%=camelize(name)%>SortingRequestAction = createAction('[<%=underscore(name).toUpperCase() %>] Request <%=underscore(name) %> to Sort List',props<{ payload:any; }>());
+export const <%=camelize(name)%>SortingSuccessAction = createAction('[<%=underscore(name).toUpperCase() %>] Success get <%=underscore(name) %> to Sort List',props<{ sorting: any;}>());
+export const <%=camelize(name)%>SortingFailedAction  = createAction('[<%=underscore(name).toUpperCase() %>] Failed to get <%=underscore(name) %> to Sort List',props<{ error: any;}>());
+//#endregion

@@ -15,6 +15,14 @@
 		"store": {
 			"type": "boolean",
 			"description": "Flag to include the ngrx files settings in the module scaffolding"
+		},
+		"project": {
+			"type": "string",
+			"description": "Project Name"
+		},
+		"path": {
+			"type": "string",
+			"description": "path of the files"
 		}
 	},
 	"required": [

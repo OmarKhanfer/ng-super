@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { <%=classify(name)%>RoutingModule } from './<%=name%>-routing.module';
-<% if (store) { %>import { <%=classify(name)%>Reducers } from './store/<%=name%>.reducers';
-import { <%=classify(name)%>Effects } from './store/<%=name%>.effects';
+<% if (store) { %>import { <%=camelize(name)%>Reducer } from './store/<%=name%>.reducers';
+import { <%=camelize(name)%>Effects } from './store/<%=name%>.effects';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";<% } %> 
 
@@ -11,8 +11,8 @@ import { EffectsModule } from "@ngrx/effects";<% } %>
   imports:[
     CommonModule,
     <%=classify(name)%>RoutingModule,
-    <% if (store) { %>StoreModule.forFeature('<%=camelize(classify(name))%>', <%=classify(name)%>Reducers),
-    EffectsModule.forFeature([<%=classify(name)%>Effects]),<% } %>  ],
+    <% if (store) { %>StoreModule.forFeature('<%=camelize(name)%>', <%=camelize(name)%>Reducer),
+    EffectsModule.forFeature([<%=camelize(name)%>Effects]),<% } %>  ],
   exports:[],
   providers:[]
 })

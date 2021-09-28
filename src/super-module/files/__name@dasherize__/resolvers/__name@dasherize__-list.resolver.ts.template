@@ -1,11 +1,11 @@
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store,  } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { <%=classify(name)%>State } from '../store/<%=name%>.state';
 import { <%=classify(name)%>Service } from '../services/<%=name%>.service';
-import { <%=classify(name)%>sListSuccess } from '../store/<%=name%>.actions';
+<% if (store){ %> import { <%=classify(name)%>State } from '../store/<%=name%>.state';
+import { Store } from '@ngrx/store';
+import {  <%=camelize(name)%>ListSuccessAction } from '../store/<%=name%>.actions';<% } %> 
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ import { <%=classify(name)%>sListSuccess } from '../store/<%=name%>.actions';
 
 export class <%=classify(name)%>DetailsResolver implements Resolve<any>{
 
-  constructor(private service:  <%=classify(name)%>Service, private store: Store<<%=classify(name)%>State>) {
+  constructor(private service:  <%=classify(name)%>Service<% if (store){ %> , private store: Store<<%=classify(name)%>State><% } %> ) {
 
   }
 
@@ -22,7 +22,7 @@ export class <%=classify(name)%>DetailsResolver implements Resolve<any>{
 
     return this.service.get<%=classify(name)%>sList(payload).pipe(
       map((response: any) => {
-        this.store.dispatch(new <%=classify(name)%>sListSuccess(response));
+        <% if (store){ %>this.store.dispatch(new <%=classify(name)%>sListSuccess(response));<% } %> 
         return response;
       })
     );

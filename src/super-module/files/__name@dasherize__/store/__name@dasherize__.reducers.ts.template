@@ -1,86 +1,53 @@
 import { initial<%=classify(name)%>State, <%=classify(name)%>State } from './<%=name%>.state';
-import { <%=classify(name)%>sActions,<%=classify(name)%>sActionTypes } from './<%=name%>.actions';
+import * as <%=camelize(name)%>Actions from './<%=name%>.actions';
+import { Action,createReducer, on } from '@ngrx/store';
 
+const <%=camelize(name)%>ReducersCases =  createReducer(
+  initial<%=classify(name)%>State,
 
-export function <%=classify(name)%>Reducers(
-  state = initial<%=classify(name)%>State,
-  action:<%=classify(name)%>sActions
-):<%=classify(name)%>State {
-  switch (action.type) {
+  //#region <%=classify(name)%> List Case
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>ListRequestAction, state => ({ ...state })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>ListSuccessAction, (state,resp) => ({ ...state, <%=camelize(name)%>List:resp.response, errors:null })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>ListFailedAction, (state,resp) => ({ ...state,errors:resp.error })),
+  //#endregion
 
-    //#region <%=classify(name)%> List Case
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_REQUEST: {
-      return { ...state };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_SUCCESS: {
-      return { ...state, <%=camelize(name)%>sList: action.response,errors:null };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_FAILED: {
-      return { ...state, errors: action.error };
-    }
-    //#endregion
+  //#region <%=classify(name)%> Details Case
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>DetailsRequestAction, state => ({ ...state })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>DetailsSuccessAction, (state,resp) => ({ ...state, <%=camelize(name)%>Details:resp.response, errors:null })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>DetailsFailedAction , (state,resp) => ({ ...state,errors:resp.error })),
+  //#endregion
 
-    //#region <%=classify(name)%> Details Case
-     case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_REQUEST: {
-      return { ...state };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_SUCCESS: {
-      return { ...state, <%=camelize(name)%>Details: action.response,errors:null };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DETAILS_FAILED: {
-      return { ...state, errors: action.error };
-    }
-    //#endregion
+  //#region <%=classify(name)%> Delete Case
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>DeleteRequestAction, state => ({ ...state })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>DeleteSuccessAction, (state,resp) => ({ ...state, errors:null })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>DeleteFailedAction , (state,resp) => ({ ...state,errors:resp.error })),
+  //#endregion
 
-    //#region <%=classify(name)%> Create Case
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_REQUEST: {
-      return { ...state };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_SUCCESS: {
-      return { ...state,errors:null };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_CREATE_FAILED: {
-      return { ...state, errors: action.error };
-    }
-    //#endregion
+  //#region <%=classify(name)%> Create Case
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>CreateRequestAction, state => ({ ...state })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>CreateSuccessAction, (state,resp) => ({ ...state, errors:null })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>CreateFailedAction , (state,resp) => ({ ...state,errors:resp.error })),
+  //#endregion
 
-    //#region <%=classify(name)%> Update Case
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_REQUEST: {
-      return { ...state };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_SUCCESS: {
-      return { ...state,errors:null };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_UPDATE_FAILED: {
-      return { ...state, errors: action.error };
-    }
-    //#endregion
+  //#region <%=classify(name)%> Update Case
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>UpdateRequestAction, state => ({ ...state })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>UpdateSuccessAction, (state,resp) => ({ ...state, errors:null })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>UpdateFailedAction , (state,resp) => ({ ...state,errors:resp.error })),
+  //#endregion
 
+  //#region <%=classify(name)%> Filter Case
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterRequestAction, state => ({ ...state })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterSuccessAction, (state,resp) => ({ ...state, filters:resp.filter, errors:null })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterFailedAction , (state,resp) => ({ ...state,errors:resp.error })),
+  //#endregion
 
-    //#region <%=classify(name)%> Delete Case
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_REQUEST: {
-      return { ...state };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_SUCCESS: {
-      return { ...state,errors:null };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_DELETE_FAILED: {
-      return { ...state, errors: action.error };
-    }
-    //#endregion
+  //#region <%=classify(name)%> Sorting Case
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingRequestAction, state => ({ ...state })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingSuccessAction, (state,resp) => ({ ...state, sorting:resp.sorting, errors:null })),
+  on(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingFailedAction , (state,resp) => ({ ...state,errors:resp.error })),
+  //#endregion
+);
 
-    //#region <%=classify(name)%> Filter Case
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_REQUEST: {
-      return { ...state };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_SUCCESS: {
-      return { ...state,filters:action.filters };
-    }
-    case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>_FILTER_FAILED: {
-      return { ...state, errors: action.error };
-    }
-    //#endregion
-    default:
-      return { ...state, };
-  }
+export function <%=camelize(name)%>Reducer(state: <%=classify(name)%>State | undefined, action: Action) {
+  return <%=camelize(name)%>ReducersCases(state, action);
 }
