@@ -68,15 +68,15 @@ export class <%=camelize(name)%>Effects {
     catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>UpdateFailedAction(resp.error))))
   );
 
-  filter<%=classify(name)%>sList$ = this.actions$.pipe(
+  filter<%=classify(name)%>List$ = createEffect(() => this.actions$.pipe(
     ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterRequestAction),
     switchMap((req: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterSuccessAction(req.filter))),
-    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterFailedAction(resp.error)))
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>FilterFailedAction(resp.error))))
   );
 
-  Sort<%=classify(name)%>sList$ = this.actions$.pipe(
+  sort<%=classify(name)%>List$ = createEffect(() => this.actions$.pipe(
     ofType(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingRequestAction),
     switchMap((req: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingSuccessAction(req.sorting))),
-    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingFailedAction(resp.error)))
+    catchError((resp: any) => of(<%=camelize(name)%>Actions.<%=camelize(name)%>SortingFailedAction(resp.error))))
   );
 }

@@ -29,6 +29,10 @@
 		"path": {
 			"type":"string",
 			"description": "Path of the module you want to generate"
+		},
+		"freePath": {
+			"type": "string",
+			"description": "This is for the free path not in the application type such as app or lib"
 		}
 	},
 	"required": [

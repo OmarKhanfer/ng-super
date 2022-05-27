@@ -8,7 +8,7 @@ const <%=camelize(name)%>State = (state: any) => {
 // selector for all <%=classify(name).toLowerCase()%>s
 export const select<%=classify(name)%>sList = createSelector(
   <%=camelize(name)%>State,
-  (state: <%=classify(name)%>State) => (state && state.<%=camelize(name)%>sList ? state.<%=camelize(name)%>sList : null)
+  (state: <%=classify(name)%>State) => (state && state.<%=camelize(name)%>List ? state.<%=camelize(name)%>List : null)
 );
 
 

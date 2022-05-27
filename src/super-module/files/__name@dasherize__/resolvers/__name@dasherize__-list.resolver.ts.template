@@ -22,7 +22,7 @@ export class <%=classify(name)%>DetailsResolver implements Resolve<any>{
 
     return this.service.get<%=classify(name)%>sList(payload).pipe(
       map((response: any) => {
-        <% if (store){ %>this.store.dispatch(new <%=classify(name)%>sListSuccess(response));<% } %> 
+        <% if (store){ %>this.store.dispatch(<%=camelize(name)%>ListSuccessAction(response));<% } %> 
         return response;
       })
     );

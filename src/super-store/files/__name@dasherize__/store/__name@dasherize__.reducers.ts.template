@@ -13,7 +13,7 @@ export function <%=classify(name)%>Reducers(
       return { ...state };
     }
     case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_SUCCESS: {
-      return { ...state, <%=camelize(name)%>sList: action.response,errors:null };
+      return { ...state, <%=camelize(name)%>List: action.response,errors:null };
     }
     case <%=classify(name)%>sActionTypes.<%=underscore(name).toUpperCase() %>S_LIST_FAILED: {
       return { ...state, errors: action.error };

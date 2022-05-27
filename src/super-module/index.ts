@@ -44,6 +44,10 @@ export function superModule(options: Schema): Rule {
       options.path = `${project.sourceRoot}/${projectType}/${options.path}`;
     }
 
+    if(options.freePath != undefined) {
+      options.path = `${project.sourceRoot}/${options.freePath}`;
+    }
+
     options.selector = options.selector || buildSelector(options, (project && project.prefix) || "");
 
     const templateSource = apply(url("./files"), [
